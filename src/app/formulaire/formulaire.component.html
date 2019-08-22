@@ -1,0 +1,30 @@
+<h1>Formulaire</h1>
+
+<div class="formulaire">
+    
+    <form [formGroup]="model">
+        <mat-form-field>
+            <input matInput formControlName="titre" placeholder="Titre du Film"/>
+            <mat-error *ngIf="titre.errors?.required">
+                Veuillez renseigner le titre du film !
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName= "appreciation" placeholder="appreciation"/>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName= "url" placeholder="url"/>
+        </mat-form-field>
+        <h3>Acteurs</h3>
+        <div formArrayName= "acteurs">
+            <div *ngFor="let p of acteurForm.controls, let i=index" [formGroupName]="i">
+                <mat-form-field color= "secondary">
+                    <input matInput formControlName="firstname" placeholder="nom de l'acteur" />
+                </mat-form-field>
+            </div>
+        </div>
+        <button (click)="addActeur()" mat-raised-button color="primary">Ajouter un acteur</button>
+        <br />
+        <button (click)="validationForm" mat-raised-button color="secondary">Valider</button>
+    </form>
+</div>
